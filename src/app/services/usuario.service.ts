@@ -18,4 +18,11 @@ export class UsuarioService {
       map(resp => resp['data'] )
     )
   }
+
+  getUserById(id: string){
+    return this.httpClient.get(`${this.urlApi}/users/${id}`)
+    .pipe(
+      map(resp => resp['data'] )
+    )
+  }
 }

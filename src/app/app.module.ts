@@ -11,6 +11,7 @@ import { RutasRoutingModule } from './app-routing.module'
 
 import { HttpClientModule } from '@angular/common/http'
 
+import { appReducers } from './store/app.reducer';
 import { StoreModule } from '@ngrx/store'
 import { StoreDevtoolsModule } from '@ngrx/store-devtools'
 
@@ -19,6 +20,10 @@ import { ReactiveFormsModule } from '@angular/forms'
 import { environment } from 'src/environments/environment'
 import { SharedModule } from './shared/shared.module';
 import { UsuariosModule } from './usuarios/usuarios.module';
+
+// EFECTOS NGRX
+import { EffectsModule } from '@ngrx/effects'
+import { effectsArr } from './store/effects/index';
 
 @NgModule({
   declarations: [
@@ -34,7 +39,8 @@ import { UsuariosModule } from './usuarios/usuarios.module';
     UsuariosModule,
     ReactiveFormsModule,
     
-    // StoreModule.forRoot(),
+    StoreModule.forRoot( appReducers ),
+    EffectsModule.forRoot(effectsArr),
     StoreDevtoolsModule.instrument({
       maxAge: 25,
       logOnly: environment.production
